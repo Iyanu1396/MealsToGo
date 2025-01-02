@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "focus-time",
-    "slug": "focus-time",
+    "name": "MealsToGo",
+    "slug": "MealsToGo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
