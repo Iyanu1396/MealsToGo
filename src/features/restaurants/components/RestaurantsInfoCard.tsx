@@ -1,5 +1,21 @@
-import { Text , StyleSheet} from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { Card } from "react-native-paper";
+import styled from "styled-components/native";
+
+const RestuarantsCard = styled(Card)`
+   background-color:  ${props => props?.theme?.colors?.bg.primary};
+`;
+
+const RestuarantsCardCover = styled(Card.Cover)`
+  background-color:  ${props => props?.theme?.colors?.bg?.primary};
+  padding: ${props => props.theme.space[3]};
+`;
+
+const Title = styled.Text`
+   padding: ${props => props?.theme?.space[3]};
+  color: ${(props) => props?.theme?.colors?.ui.primary};
+  font-family: ${(props) => props?.theme?.fonts?.body};
+`;
 
 function RestaurantsInfoCard({ restaurant = {} }) {
   const {
@@ -14,27 +30,11 @@ function RestaurantsInfoCard({ restaurant = {} }) {
     isClosedTemporary,
   } = restaurant;
   return (
-    <Card  elevation={5} style={styles.card} >
-      <Card.Cover key={name} style={styles.cover} source={{ uri: photos[0] }} />
-      <Text style={styles.title}>{name}</Text>
-    </Card>
+    <RestuarantsCard elevation={5}>
+      <RestuarantsCardCover key={name} source={{ uri: photos[0] }} />
+      <Title>{name}</Title>
+    </RestuarantsCard>
   );
 }
 
-const styles= StyleSheet.create({
-  card:{
-    backgroundColor:"white"
-  },
-  cover:{
-    backgroundColor:"white",
-    padding:20,
-    
-
-  },title:{
-    padding:16
-  }
-})
-
 export default RestaurantsInfoCard;
-
-

@@ -1,13 +1,29 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";;
+import { StyleSheet, View, SafeAreaView,  } from "react-native";
 import { Searchbar } from 'react-native-paper';
 import RestaurantsInfoCard from "../components/RestaurantsInfoCard";
+import styled from "styled-components/native";
+
+const SafeArea = styled.SafeAreaView`
+  flex: 1;
+`
+
+const SearchContainer = styled.View`
+  padding: ${props => props.theme.space[3]};
+`
+
+const ListContainer = styled.View`
+    flex: 1;
+    padding: ${props => props.theme.space[3]};
+`
+
+
 
 function Restuarants() {
     const [searchQuery, setSearchQuery] = useState('');
   return (
-     <SafeAreaView style={styles.container}>
-           <View style={styles.searchContainer}>
+     <SafeArea>
+           <SearchContainer>
            <Searchbar
          placeholder="Search"
          mode="bar"
@@ -15,28 +31,14 @@ function Restuarants() {
          elevation={3}
          value={searchQuery}
        />
-           </View>
-           <View style={styles.listContainer}>
+           </SearchContainer>
+           <ListContainer >
            <RestaurantsInfoCard/>
-           </View>
-         </SafeAreaView>
+           </ListContainer>
+         </SafeArea>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
- 
-  },
-  searchContainer: {
 
-    padding: 16,
-  },
-  listContainer: {
-    backgroundColor: "blue",
-    flex: 1,
-    padding: 16,
-  },
-});
 
 export default Restuarants
