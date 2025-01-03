@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StyleSheet, View, SafeAreaView,  } from "react-native";
 import { Searchbar } from 'react-native-paper';
 import RestaurantsInfoCard from "../components/RestaurantsInfoCard";
 import styled from "styled-components/native";
