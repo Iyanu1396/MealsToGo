@@ -2,7 +2,7 @@ import React from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import Restuarants from "@/src/features/restaurants/screens/Restuarants";
 import { ThemeProvider } from "styled-components/native";
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
 import { theme } from "@/src/infrastructure/theme";
 
 import {
@@ -13,6 +13,7 @@ import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 import { SafeArea } from "@/src/utils/SafeArea";
+import { restaurantsRequest } from "@/src/services/restaurants/mock/restaurants.services";
 
 const Tab = createBottomTabNavigator();
 
@@ -33,6 +34,9 @@ function MapScreen() {
 }
 
 export default function Page() {
+
+  restaurantsRequest()
+  
   let [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
@@ -48,23 +52,25 @@ export default function Page() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Tab.Navigator screenOptions={({ route }) => ({
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
 
-              if (route.name === 'Restaurants') {
-                iconName = focused ? 'restaurant' : 'restaurant-outline';
-              } else if (route.name === 'Settings') {
-                iconName = focused ? 'settings' : 'settings-outline';
-              } else if (route.name === 'Map') {
-                iconName = focused ? 'map' : 'map-outline';
+              if (route.name === "Restaurants") {
+                iconName = focused ? "restaurant" : "restaurant-outline";
+              } else if (route.name === "Settings") {
+                iconName = focused ? "settings" : "settings-outline";
+              } else if (route.name === "Map") {
+                iconName = focused ? "map" : "map-outline";
               }
 
               return <Ionicons name={iconName} size={size} color={color} />;
             },
-            tabBarActiveTintColor: 'tomato',
-            tabBarInactiveTintColor: 'gray',
-          })}>
+            tabBarActiveTintColor: "tomato",
+            tabBarInactiveTintColor: "gray",
+          })}
+        >
           <Tab.Screen name="Restaurants" component={Restuarants} />
           <Tab.Screen name="Settings" component={SettingsScreen} />
           <Tab.Screen name="Map" component={MapScreen} />
